@@ -1,0 +1,203 @@
+<head>
+  <title>hybrisPoll</title>
+</head>
+
+<body>
+
+ 
+
+</body>
+
+<template name="layout">
+
+      <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+           {{> yield 'header'}}
+<div class="inner">
+           {{> yield}}
+          </div>
+           {{> yield 'footer'}}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+</template>
+
+
+<template name="404">
+
+      <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+           {{> yield 'header'}}
+<h1 class="cover-heading">404</h1>
+          Sorry, no pages was found.
+
+           {{> yield 'footer'}}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+</template>
+
+
+<template name="header">
+
+            <div class="inner">
+              <h3 class="masthead-brand">Indicateur Performance Hybris</h3>
+            </div>
+
+</template>
+
+<template name="footer">
+
+            <div class="inner">
+              <p>Indicateur Performance Hybris 
+              	<a href="mailto:dpinos@vente-privee.com">dpinos@vente-privee.com</a>
+              </p>
+            </div>
+
+</template>
+
+<template name="home">
+En tant qu'ambassadrices et key-users hybris, vous êtes les mieux placées pour me remonter l'état de l'application. Sur une échelle de 1 à 5 (le chiffre 1 correspond à "non satisfaisant", le chiffre 5 à "trés satisfaisant"), quelle note donneriez vous à la performance des écrans hybris ?
+<!-- <br>
+<br>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myPoll">
+  Je veux saisir mes notes pour la 1e fois
+</button>
+<br>
+<br>
+ou -->
+<br>
+<br>
+<div class="input-group input-group-lg">
+<span class="input-group-addon">Je saisis mon email</span>
+<input type="text" width="20" id="myEmail" class="form-control" placeholder="email">
+<span class="input-group-btn">
+<button class="btn btn-default" id="action"> Saisir ou modifier mes notes</button>
+</span>
+
+{{>pollCreate}}
+{{>pollUpdate}}
+
+</div>
+ 
+</template>
+
+<template name="pollCreate">
+	<div class="modal fade"  id="pollCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:#333">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+      </div>
+        {{#autoForm collection="Polls" id="insertPollForm" type="insert"}}
+      <div class="modal-body">
+    <fieldset>
+      <input type="hidden" data-schema-key="email" id="createEmail" class="form-control">
+      {{> afQuickField name='ecranV' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranP' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranU' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranF' options="allowed" noselect="true"}}
+      {{> afQuickField name='preview' options="allowed" noselect="true"}}
+      {{> afQuickField name='commentaire' rows="6"}}
+    </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#pollCreate">Enregistrer</button>
+      </div>
+      {{/autoForm}}
+    </div>
+  </div>
+  </div>
+ </template>
+
+<template name="pollUpdate">
+	<div class="modal fade"  id="pollUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:#333">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fermer</span></button>
+      </div>
+         {{#autoForm collection="Polls" id="updatePollForm" type="update" doc=editingDoc}}
+      <div class="modal-body">
+    <fieldset>
+
+      {{> afQuickField name='email'}}
+      {{> afQuickField name='ecranV' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranP' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranU' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranF' options="allowed" noselect="true"}}
+      {{> afQuickField name='preview' options="allowed" noselect="true"}}
+      {{> afQuickField name='commentaire' rows="6"}}
+    </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#pollUpdate">Enregistrer</button>
+      </div>
+      {{/autoForm}}
+    </div>
+  </div>
+  </div>
+ </template>
+<!-- 
+<template name="update">
+  {{#autoForm collection="Polls" id="updatePollForm" type="update" doc=editingDoc}}
+    <fieldset>
+      <legend></legend>
+      {{> afQuickField name='email'}}
+      {{> afQuickField name='ecranV' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranP' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranU' options="allowed" noselect="true"}}
+      {{> afQuickField name='ecranF' options="allowed" noselect="true"}}
+      {{> afQuickField name='preview' options="allowed" noselect="true"}}
+      {{> afQuickField name='commentaire' rows="6"}}
+    </fieldset>
+    <button type="submit" id="update" class="btn btn-primary">Enregistrer</button>
+  {{/autoForm}}
+</template> -->
+
+<template name="viewAll">
+  <table class="table">
+  	<tr>
+  		<td>#</td>
+  		<td>email</td>
+  		<td>V</td>
+  		<td>P</td>
+  		<td>U</td>
+  		<td>F</td>
+  		<td>Preview</td>
+  		<td>Commentaires</td>
+  	</tr>
+  {{#each val}}
+  <tr>
+  		<td>{{_id}}</td>
+  		<td>{{email}}</td>
+  		<td>{{ecranV}}</td>
+  		<td>{{ecranP}}</td>
+  		<td>{{ecranU}}</td>
+  		<td>{{ecranF}}</td>
+  		<td>{{preview}}</td>
+  		<td>{{commentaire}}</td>
+  	</tr>
+  {{/each}}
+  </table>
+</template>
