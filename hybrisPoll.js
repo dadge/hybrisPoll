@@ -15,19 +15,19 @@ Polls = new Meteor.Collection("polls");
         ecranP: {
             type: Number,
             allowedValues: [1, 2, 3, 4, 5],
-            label: "Ecran P",
+            label: "Ecran P - Produits",
             optional:true
         },
         ecranU: {
             type: Number,
             allowedValues: [1, 2, 3, 4, 5],
-            label: "Ecran U",
+            label: "Ecran U - Arborescence",
             optional:true
         },
         ecranF: {
             type: Number,
             allowedValues: [1, 2, 3, 4, 5],
-            label: "Ecran F",
+            label: "Ecran F - Famille des produits",
             optional:true
         },
         preview: {
@@ -38,7 +38,7 @@ Polls = new Meteor.Collection("polls");
         },
         commentaire: {
             type: String,
-            label: "Commentaire",
+            label: "Commentaires",
             optional:true
         }
     }));
